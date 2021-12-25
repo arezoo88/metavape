@@ -1,0 +1,528 @@
+swagger: '2.0'
+info:
+  title: Meta Vape Apis
+  description: Test description
+  termsOfService: ''
+  contact:
+    email: ''
+  license:
+    name: License
+  version: v1
+host: 127.0.0.1:8000
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Bearer: []
+paths:
+  /account/email-verify/:
+    get:
+      operationId: account_email-verify_list
+      description: ''
+      parameters:
+        - name: token
+          in: query
+          description: Description
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+        - account
+    parameters: []
+  /account/follow/:
+    get:
+      operationId: account_follow_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Relation'
+      tags:
+        - account
+    post:
+      operationId: account_follow_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Relation'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Relation'
+      tags:
+        - account
+    put:
+      operationId: account_follow_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Relation'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Relation'
+      tags:
+        - account
+    patch:
+      operationId: account_follow_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Relation'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Relation'
+      tags:
+        - account
+    parameters: []
+  /account/login/:
+    post:
+      operationId: account_login_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Login'
+      tags:
+        - account
+    parameters: []
+  /account/logout/:
+    post:
+      operationId: account_logout_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Logout'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Logout'
+      tags:
+        - account
+    parameters: []
+  /account/password-reset-complete:
+    patch:
+      operationId: account_password-reset-complete_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SetNewPassword'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/SetNewPassword'
+      tags:
+        - account
+    parameters: []
+  /account/password-reset/{uidb64}/{token}/:
+    get:
+      operationId: account_password-reset_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/SetNewPassword'
+      tags:
+        - account
+    parameters:
+      - name: token
+        in: path
+        required: true
+        type: string
+      - name: uidb64
+        in: path
+        required: true
+        type: string
+  /account/register/:
+    post:
+      operationId: account_register_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Register'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Register'
+      tags:
+        - account
+    parameters: []
+  /account/request-reset-email/:
+    post:
+      operationId: account_request-reset-email_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ResetPasswordEmailRequest'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ResetPasswordEmailRequest'
+      tags:
+        - account
+    parameters: []
+  /account/token/refresh/:
+    post:
+      operationId: account_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/TokenRefresh'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenRefresh'
+      tags:
+        - account
+    parameters: []
+  /product/:
+    get:
+      operationId: product_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+      tags:
+        - product
+    parameters: []
+  /product/comment/create/:
+    post:
+      operationId: product_comment_create_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Comment'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Comment'
+      tags:
+        - product
+    parameters: []
+  /product/comment/list/{product_id}/:
+    get:
+      operationId: product_comment_list_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Comment'
+      tags:
+        - product
+    parameters:
+      - name: product_id
+        in: path
+        required: true
+        type: string
+  /product/rate/create/:
+    post:
+      operationId: product_rate_create_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Rating'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Rating'
+      tags:
+        - product
+    parameters: []
+  /product/rate/list/{product_id}/:
+    get:
+      operationId: product_rate_list_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Rating'
+      tags:
+        - product
+    parameters:
+      - name: product_id
+        in: path
+        required: true
+        type: string
+definitions:
+  User:
+    required:
+      - email
+    type: object
+    properties:
+      pk:
+        title: ID
+        type: integer
+        readOnly: true
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+  Relation:
+    required:
+      - from_user
+      - to_user
+    type: object
+    properties:
+      pk:
+        title: ID
+        type: integer
+        readOnly: true
+      from_user:
+        $ref: '#/definitions/User'
+      to_user:
+        $ref: '#/definitions/User'
+  Login:
+    required:
+      - email
+      - password
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 255
+        minLength: 3
+      password:
+        title: Password
+        type: string
+        maxLength: 68
+        minLength: 6
+      tokens:
+        title: Tokens
+        type: string
+        readOnly: true
+  Logout:
+    required:
+      - refresh
+    type: object
+    properties:
+      refresh:
+        title: Refresh
+        type: string
+        minLength: 1
+  SetNewPassword:
+    required:
+      - password
+      - token
+      - uidb64
+    type: object
+    properties:
+      password:
+        title: Password
+        type: string
+        maxLength: 68
+        minLength: 6
+      token:
+        title: Token
+        type: string
+        minLength: 1
+      uidb64:
+        title: Uidb64
+        type: string
+        minLength: 1
+  Register:
+    required:
+      - email
+      - password
+      - username
+    type: object
+    properties:
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        maxLength: 100
+        minLength: 6
+      username:
+        title: Username
+        type: string
+        maxLength: 100
+        minLength: 1
+  ResetPasswordEmailRequest:
+    required:
+      - email
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        format: email
+        minLength: 2
+      redirect_url:
+        title: Redirect url
+        type: string
+        maxLength: 500
+        minLength: 1
+  TokenRefresh:
+    required:
+      - refresh
+    type: object
+    properties:
+      refresh:
+        title: Refresh
+        type: string
+        minLength: 1
+      access:
+        title: Access
+        type: string
+        readOnly: true
+        minLength: 1
+  ProductImage:
+    required:
+      - image
+    type: object
+    properties:
+      image:
+        title: Image
+        type: string
+  ImageList:
+    type: object
+    properties:
+      images:
+        type: array
+        items:
+          $ref: '#/definitions/ProductImage'
+  Product:
+    required:
+      - name
+      - description
+      - shop
+      - image
+    type: object
+    properties:
+      pk:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 200
+        minLength: 1
+      description:
+        title: Description
+        type: string
+        minLength: 1
+      shop:
+        title: Shop
+        type: integer
+      image:
+        $ref: '#/definitions/ImageList'
+  Comment:
+    required:
+      - user
+      - body
+      - product
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      body:
+        title: Body
+        type: string
+        minLength: 1
+      product:
+        title: Product
+        type: integer
+  Rating:
+    required:
+      - user
+      - product
+    type: object
+    properties:
+      user:
+        $ref: '#/definitions/User'
+      star:
+        title: Star
+        type: integer
+        maximum: 5
+      product:
+        title: Product
+        type: integer

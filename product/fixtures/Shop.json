@@ -1,0 +1,16 @@
+[
+    {
+        "model": "product.shop",
+        "pk": 1,
+        "fields": {
+            "name": "dampfdorado",
+            "nam_xpath": "//div[@class=\"dd-frontend--detail--header-left\"]//h1[@class=\"product--title\"]/span",
+            "description_xpath": "//div[@class=\"product--description\"]",
+            "star_xpath": "//div[@class=\"product--info\"]//div[@class=\"dd-frontend--detail--header-left\"]//div[@class=\"product--rating-container\"]//a[@class=\"product--rating-link\"]//span/meta[1]/@content",
+            "rating_nember_xpath": "//*[@id=\"detail--product-reviews\"]//div[contains(@class, \"review--entry\")]/div[@class=\"entry--header\"]/span/meta[1]/@content",
+            "title_xpath": "//*[@id=\"detail--product-reviews\"]/div[contains(@class, \"review--entry\")]/div[@class=\"entry--content\"]/h4/text()",
+            "comment_xpath": "//*[@id=\"detail--product-reviews\"]/div[contains(@class, \"review--entry\")]/div[@class=\"entry--content\"]/p[contains(@class, \"content--box\")]",
+            "image_xpath": "//div[@class=\"image--box image-slider--item\"]//span[@class=\"image--element\"]//span[@class=\"image--media\"]/img//@src"
+        }
+    }
+]

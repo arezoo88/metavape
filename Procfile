@@ -1,1 +1,1 @@
-web: gunicorn weblog.wsgi
+web: gunicorn metawape.wsgi

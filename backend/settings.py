@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import django_heroku
 import cloudinary
 from pathlib import Path
 import datetime
@@ -182,3 +183,6 @@ cloudinary.config(
     api_key="125912665664555",
     api_secret="Hh3o4j2qBg0fD4sf-lTmWTi7lz4"
 )
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

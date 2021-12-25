@@ -1,1 +1,1 @@
-web: gunicorn metawape.wsgi
+web: gunicorn backend.wsgi

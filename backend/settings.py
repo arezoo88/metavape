@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2n!^&c-fh-107td56a$r6#6_en255o+=*thp$#7v7vw25d21bh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','10.0.2.2','http://metavape.herokuapp.com/'
+ALLOWED_HOSTS = ['127.0.0.1','10.0.2.2','http://metavape.herokuapp.com/','https://metavape.herokuapp.com/'
 ]
 
 

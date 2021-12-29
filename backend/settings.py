@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import django_heroku
 import cloudinary
 from pathlib import Path
+from decouple import config,Csv
 import datetime
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +22,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2n!^&c-fh-107td56a$r6#6_en255o+=*thp$#7v7vw25d21bh'
+# SECRET_KEY = 'django-insecure-2n!^&c-fh-107td56a$r6#6_en255o+=*thp$#7v7vw25d21bh'
 
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+
+# ALLOWED_HOSTS = ['127.0.0.1','10.0.2.2','http://metavape.herokuapp.com/','https://metavape.herokuapp.com/'
+# ]
+
+
+
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1','10.0.2.2','http://metavape.herokuapp.com/','https://metavape.herokuapp.com/'
-]
+DEBUG = config('DEBUG',default=True, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -117,10 +125,27 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+if DEBUG == True:
+    engine = 'django.db.backends.sqlite3'
+else:
+    engine = 'django.db.backends.postgresql'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': engine,
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': '5432'
     }
 }
 
